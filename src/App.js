@@ -1,28 +1,34 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import ListQuestions from './ListQuestions'
 class App extends Component {
+  state = {
+    questions: []
+  }
+  componentDidMount(){
+    fetch('http://127.0.0.1:5001/questions')
+    .then(res => res.json())
+    .then(data => (
+      this.setState({questions: data.questions})
+    ))
+  }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        {/* navbar */}
+        <nav className="navbar navbar-default">
+          <div className="container-fluid">
+            <div className="navbar-header">
+              <a className="navbar-brand" href="#">Jurema</a>
+            </div>
+          </div>
+        </nav>
+        <ListQuestions questions={this.state.questions}/>
       </div>
     );
   }
 }
 
 export default App;
+
+
+   
