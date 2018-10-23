@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom'
-import ListQuestions from './ListQuestions'
-import Question from './Question'
-import Results from './Results'
+import ListQuestions from './components/ListQuestions'
+import Question from './components/Question'
+import Results from './components/Results'
+import * as JuremaAPI from './utils/JuremaAPI'
 
 class App extends Component {
   state = {
@@ -14,17 +15,13 @@ class App extends Component {
     }
   }
   componentDidMount(){
-    fetch('http://127.0.0.1:5001/questions')
-    .then(res => res.json())
+    JuremaAPI.getQuestions()
     .then(data => (
       this.setState({questions: data.questions})
     ))
   }
   sendScriptFile = (data, question_id) => {
-    fetch('http://127.0.0.1:5001/question', {
-      method: 'POST',
-      body: data
-    }).then(res => res.json())
+    JuremaAPI.sendFile(data)
     .then(response => {
       this.setState({
         execution: {
