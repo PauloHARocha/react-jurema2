@@ -56,11 +56,13 @@ class App extends Component {
           <Route exact path='/question/:id' render={(props) => (
             <section>
               <Question 
-                question={this.state.questions.find(
-                  question => question.id === parseInt(props.match.params.id))}
-                onSendFile={this.sendScriptFile} />
-            {this.state.execution.question_id === parseInt(props.match.params.id) 
-              && <Results execution={this.state.execution}/>}
+                question={this.state.questions.find(question => question.id === parseInt(props.match.params.id))}
+                onSendFile={this.sendScriptFile}
+                code={this.state.execution.question_id === parseInt(props.match.params.id) ? this.state.execution.code : undefined} />
+            
+              {this.state.execution.question_id === parseInt(props.match.params.id) 
+                && <Results results={this.state.execution.results}/>}
+            
             </section>
          )} />
         }
