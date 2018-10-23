@@ -3,6 +3,7 @@ import { Route, Link } from 'react-router-dom'
 import ListQuestions from './components/ListQuestions'
 import Question from './components/Question'
 import Results from './components/Results'
+import Loader from './components/Loader'
 import * as JuremaAPI from './utils/JuremaAPI'
 
 class App extends Component {
@@ -12,15 +13,20 @@ class App extends Component {
       question_id: undefined,
       results: [],
       code: ''
-    }
+    },
+    loading: false
   }
   componentDidMount(){
+    this.setState({ loading: true })
+    
     JuremaAPI.getQuestions()
     .then(data => (
-      this.setState({questions: data.questions})
+      this.setState({questions: data.questions, loading: false})
     ))
   }
   sendScriptFile = (data, question_id) => {
+    this.setState({ loading: true })
+    
     JuremaAPI.sendFile(data)
     .then(response => {
       this.setState({
@@ -28,10 +34,10 @@ class App extends Component {
          question_id: question_id,
          results: response.results,
          code: response.code
-        }
+        },
+        loading: false
       })})
     .catch( error => console.log(error))
-
   }
   render() {
     return (
@@ -44,7 +50,7 @@ class App extends Component {
             </div>
           </div>
         </nav>
-
+        <Loader loading={this.state.loading}/>
         <Route exact path='/' render={() => (
           <ListQuestions questions={this.state.questions}/>
         )}/>
