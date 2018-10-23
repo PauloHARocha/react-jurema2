@@ -4,6 +4,7 @@ import ListQuestions from './components/ListQuestions'
 import Question from './components/Question'
 import Results from './components/Results'
 import Loader from './components/Loader'
+import Error from './components/Error'
 import * as JuremaAPI from './utils/JuremaAPI'
 
 class App extends Component {
@@ -22,7 +23,7 @@ class App extends Component {
     JuremaAPI.getQuestions()
     .then(data => (
       this.setState({questions: data.questions, loading: false})
-    ))
+      )).catch(error => this.showError(error))
   }
   sendScriptFile = (data, question_id) => {
     this.setState({ loading: true })
@@ -37,7 +38,14 @@ class App extends Component {
         },
         loading: false
       })})
-    .catch( error => console.log(error))
+    .catch( error => this.showError(error))
+  }
+  showError = (error) => {
+    console.log(error);
+    this.setState({
+      loading: false,
+      error: true
+    })
   }
   render() {
     return (
@@ -50,7 +58,10 @@ class App extends Component {
             </div>
           </div>
         </nav>
+        
+        <Error error={this.state.error}/>
         <Loader loading={this.state.loading}/>
+
         <Route exact path='/' render={() => (
           <ListQuestions questions={this.state.questions}/>
         )}/>

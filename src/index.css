@@ -3,6 +3,19 @@ body {
   padding: 0;  
 }
 
+.error-container {
+    width: 100%;
+    margin: auto;
+    background-color: lightcoral;
+}
+
+.error-content {
+    position: relative;
+    text-align: center;
+    color: white;
+    margin-top: -20px;
+}
+
 .loader-container {
     width: 100%;
     margin: auto;
