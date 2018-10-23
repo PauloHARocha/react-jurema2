@@ -12,7 +12,7 @@ class Question extends Component {
             let data = new FormData()
             data.append('file', this.state.selectedFile)
             data.append('question_id', this.props.question.id)
-            this.props.onSendFile(data);  
+            this.props.onSendFile(data, this.props.question.id);  
         } 
     }
 
