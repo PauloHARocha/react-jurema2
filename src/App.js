@@ -15,10 +15,11 @@ class App extends Component {
       results: [],
       code: ''
     },
-    loading: false
+    loading: false,
+    error: false
   }
   componentDidMount(){
-    this.setState({ loading: true })
+    this.setState({ loading: true, error: false })
     
     JuremaAPI.getQuestions()
     .then(data => (
@@ -26,7 +27,7 @@ class App extends Component {
       )).catch(error => this.showError(error))
   }
   sendScriptFile = (data, question_id) => {
-    this.setState({ loading: true })
+    this.setState({ loading: true, error: false })
     
     JuremaAPI.sendFile(data)
     .then(response => {
@@ -51,11 +52,25 @@ class App extends Component {
     return (
       <div className="App">
         {/* navbar */}
-        <nav className="navbar navbar-default">
+        <nav className="navbar navbar-inverse">
           <div className="container-fluid">
             <div className="navbar-header">
               <Link className="navbar-brand" to="/">Jurema</Link>
+              
+              <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span className="sr-only">Toggle navigation</span>
+                <span className="icon-bar"></span>
+                <span className="icon-bar"></span>
+                <span className="icon-bar"></span>
+              </button>
+            
             </div>
+            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul className="nav navbar-nav">
+                <li><Link to="/">Instruções</Link></li>
+              </ul>
+            </div>
+            
           </div>
         </nav>
         
@@ -81,7 +96,6 @@ class App extends Component {
          )} />
         }
 
-        
       </div>
     );
   }

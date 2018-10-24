@@ -6,6 +6,19 @@ class ListQuestions extends Component {
         const { questions } = this.props
         return (
             <div>
+                <div className="form-group col-lg-offset-4 col-lg-4">
+                    <div className="btn-group btn-group-justified" role="group" aria-label="...">
+                        <div className="btn-group" role="group">
+                            <button type="button" className="section-button-easy btn btn-default">Fácil</button>
+                        </div>
+                        <div className="btn-group" role="group">
+                            <button type="button" className="section-button-medium btn btn-default">Médio</button>
+                        </div>
+                        <div className="btn-group" role="group">
+                            <button type="button" className="section-button-hard btn btn-default">Difícil</button>
+                        </div>
+                    </div> 
+                </div>
                 <div className="list-group container col-lg-offset-1 col-lg-10">
                     {questions.map(question => ( 
                         <Link key={question.id} to={`/question/${question.id}`} 
@@ -13,14 +26,14 @@ class ListQuestions extends Component {
                             <h4 className="list-group-item-heading">
                             {`Questão ${question.id} - ${question.name}`}</h4>
 
-                            <p className="list-group-item-text">{question.description}</p>
-                            <h5>Exemplos:</h5>
+                            <p className="question-description list-group-item-text">{question.description}</p>
+                            {/* <h5>Exemplos:</h5>
                             <ul>
                                {question.examples.inputs.map((inp, idx) => (
                                    <li key={idx}>
                                    {inp} --> {question.examples.outputs[idx]}</li>
                                ))} 
-                            </ul>
+                            </ul> */}
                         </Link>
                     ))}
                 </div>
@@ -31,6 +44,4 @@ class ListQuestions extends Component {
 }
 
 export default ListQuestions;
-
-
 

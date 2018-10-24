@@ -18,18 +18,19 @@ class Question extends Component {
 
     checkFile = e => {
         let findPyExtension = /[.]py$/;
-        let selectedFile = e.target.files[0] ? e.target.files[0] : {name: ''}  
+        let selectedFile = e.target.files[0] ? e.target.files[0] : {name: 'nenhum'}  
 
-        findPyExtension.exec(selectedFile.name) ? this.setState({ message: 'Extensão .py correta', selectedFile: selectedFile }) 
-            : this.setState({ message: 'Extensão incorreta, precisa ser .py'}) 
+        findPyExtension.exec(selectedFile.name) ? this.setState({ 
+            message: `Extensão .py correta -> ${selectedFile.name}`, selectedFile: selectedFile }) 
+            : this.setState({ message: `Extensão incorreta, precisa ser .py -> ${selectedFile.name}`}) 
     }
 
     render() {
-        const { question, code } = this.props
+        const { question, code } = this.props   
         if(question === undefined)
             return (<div className="container">Questão não encontrada</div>)
         return (   
-            <div className="col-lg-6">        
+            <div className="question-container col-lg-6">       
                 <h3>{ question.name }</h3>
                 <p>{ question.description }</p>
                 <h5>Exemplos:</h5>
@@ -41,17 +42,22 @@ class Question extends Component {
                         
                 <form onSubmit={this.onFormSubmit} >
                     <div className="form-group">
-                        <label htmlFor="file">Envie seu código</label>
-                        <input type="file" encType="multipart/form-data" name="file" onChange={this.checkFile} required/>
+                        <label className="btn btn-default" htmlFor="file">
+                            Envie seu código
+                        </label>
+                        <input type="file" id="file" encType="multipart/form-data" name="file" onChange={this.checkFile} required/>
                         <p className="help-block">Lembre-se de enviar um arquivo com a extensão .py</p>
                         <p className="help-block">{this.state.message}</p>
                     </div>
-                    <div className="form-group">
-                        <input type='submit' value='Enviar'/>
-                    </div>
+                    {this.state.selectedFile && 
+                        <div className="form-group">
+                            <input className="btn btn-default" type='submit' value='Executar' />
+                        </div>
+                    }
+                    
                 </form>
 
-                {code && <div><pre><code>{code}</code></pre></div>}
+                {code && <div><pre className="pre-scrollable"><code>{code}</code></pre></div>}
                 
             </div>
             

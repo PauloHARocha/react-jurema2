@@ -1,6 +1,101 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+
 body {
   margin: 0;
-  padding: 0;  
+  padding: 0;
+}
+
+.navbar {
+    border-radius: 0px;
+}
+
+.navbar .navbar-brand {
+    font-family: 'Lobster', cursive;
+    color: white;
+    font-size: 22px;
+}
+
+.section-button-easy {
+    border: none;
+    border-bottom: 2px solid rgb(0, 128, 0); 
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.section-button-medium {
+    border: none;
+    border-bottom: 2px solid rgb(255, 215, 0); 
+}
+.section-button-hard {
+    border: none;
+    border-bottom: 2px solid rgb(138, 43, 226); 
+    border-radius: none;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.section-button-easy:focus, .section-button-easy:hover 
+{ 
+    outline: none;
+    background-color: rgb(0, 128, 0, 0.2);
+    border-bottom: 2px solid rgb(0, 128, 0);
+}
+.section-button-medium:focus, .section-button-medium:hover 
+{ 
+    outline: none;
+    background-color: rgb(255, 215, 0, 0.2);
+    border-bottom: 2px solid rgb(255, 215, 0);
+}
+.section-button-hard:focus, .section-button-hard:hover 
+{ 
+    outline: none;
+    background-color: rgb(138, 43, 226, 0.2);
+    border-bottom: 2px solid rgb(138, 43, 226);
+}
+
+.slc:hover, .slc:focus {
+    background-color: deepskyblue;
+    color: white;
+}
+
+.glyphicon-ok{
+    float:right;
+    color: green;
+}
+
+.glyphicon-remove{
+    float:right;
+    color: crimson;
+}
+.question-description {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.question-container {
+    padding-left: 2%;
+}
+.case-container {
+    border: none;
+    margin-bottom: 0px;
+    border-bottom: 0px;
+}
+.case-container-right {
+    border-bottom: 1px solid green; 
+}
+.case-container-wrong {
+    border-bottom: 1px solid crimson; 
+}
+
+input[type="file"] {
+    display: none;
+}
+
+code {
+    font-family: monospace, monospace;
+}
+
+pre {
+    background-color:white;
+    border: 1px solid black;
 }
 
 .error-container {
@@ -32,7 +127,7 @@ body {
     position: relative;
     margin: auto;
     border: 7px solid #f3f3f3; /* Cinza claro */
-    border-top: 7px solid deepskyblue; /* Azul */
+    border-top: 7px solid black; /* Azul */
     border-radius: 50%;
     width: 40px;
     height: 40px;
