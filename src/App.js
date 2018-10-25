@@ -5,6 +5,7 @@ import Question from './components/Question'
 import Results from './components/Results'
 import Loader from './components/Loader'
 import Error from './components/Error'
+import InstructionsModal from './components/InstructionsModal'
 import * as JuremaAPI from './utils/JuremaAPI'
 
 class App extends Component {
@@ -17,8 +18,19 @@ class App extends Component {
     },
     level: 'easy',
     loading: false,
-    error: false
+    error: false,
+    showModal: false
   }
+
+  showModal = () => {
+    this.setState({ showModal: true });
+    console.log(this.state.showModal);
+  };
+
+  hideModal = () => {
+    this.setState({ showModal: false });
+  };
+
   componentDidMount(){
     this.setState({ loading: true, error: false })
     
@@ -54,6 +66,7 @@ class App extends Component {
       error: true
     })
   }
+
   render() {
     return (
       <div className="App">
@@ -73,7 +86,7 @@ class App extends Component {
             </div>
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul className="nav navbar-nav">
-                <li><Link to="/">Instruções</Link></li>
+                <li><a onClick={this.showModal}>Instruções</a></li>
               </ul>
             </div>
             
@@ -82,6 +95,7 @@ class App extends Component {
         
         <Error error={this.state.error}/>
         <Loader loading={this.state.loading}/>
+        <InstructionsModal showModal={this.state.showModal} hideModal={this.hideModal}/>
 
         <Route exact path='/' render={() => (
           <ListQuestions

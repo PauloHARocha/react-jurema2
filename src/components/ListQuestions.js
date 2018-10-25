@@ -21,12 +21,12 @@ class ListQuestions extends Component {
                     </div> 
                 </div>
                 <div className="list-group container col-lg-offset-1 col-lg-10">
-                    {questions.map(question => ( 
+                    {questions.map((question, idx) => ( 
                         <Link key={question.id} to={`/question/${question.id}`} 
                         className="list-group-item">
                             <h4 className="list-group-item-heading">
                                 <span className={`question-title-${question.level}`}>
-                                    {`Questão ${question.id} - ${question.name}`}
+                                    {`Questão ${idx + 1} - ${question.name}`}
                                 </span>
                             </h4>
 
