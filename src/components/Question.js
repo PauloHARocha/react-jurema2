@@ -5,9 +5,7 @@ class Question extends Component {
         message: '',
         selectedFile: null
     }
-    onFormSubmit = e => {
-        e.preventDefault()
-        
+    onFormSubmit = () => {
         if(this.state.selectedFile){
             let data = new FormData()
             data.append('file', this.state.selectedFile)
@@ -19,10 +17,21 @@ class Question extends Component {
     checkFile = e => {
         let findPyExtension = /[.]py$/;
         let selectedFile = e.target.files[0] ? e.target.files[0] : {name: 'nenhum'}  
-
+        
         findPyExtension.exec(selectedFile.name) ? this.setState({ 
             message: `Extensão .py correta -> ${selectedFile.name}`, selectedFile: selectedFile }) 
             : this.setState({ message: `Extensão incorreta, precisa ser .py -> ${selectedFile.name}`}) 
+    }
+
+    debounce = (fn, delay) => {
+        let timer = null
+        return () => {
+            let context = this
+            clearTimeout(timer)
+            timer = setTimeout(()=>{
+                fn.apply(context)
+            }, delay)
+        }
     }
 
     render() {
@@ -31,7 +40,10 @@ class Question extends Component {
             return (<div className="container">Questão não encontrada</div>)
         return (   
             <div className="question-container col-lg-6">       
-                <h3>{ question.name }</h3>
+                <h3><span className={`question-title-${question.level}`}>
+                    { question.name }
+                </span></h3>
+            
                 <p>{ question.description }</p>
                 <h5>Exemplos:</h5>
                 <ul>
@@ -40,9 +52,9 @@ class Question extends Component {
                     ))}
                 </ul>
                         
-                <form onSubmit={this.onFormSubmit} >
+                <form>
                     <div className="form-group">
-                        <label className="btn btn-default" htmlFor="file">
+                        <label className="btn btn-default" htmlFor="file" tabIndex="0" >
                             Envie seu código
                         </label>
                         <input type="file" id="file" encType="multipart/form-data" name="file" onChange={this.checkFile} required/>
@@ -51,7 +63,7 @@ class Question extends Component {
                     </div>
                     {this.state.selectedFile && 
                         <div className="form-group">
-                            <input className="btn btn-default" type='submit' value='Executar' />
+                            <input className="btn btn-default" type='button' value='Executar' onClick={this.debounce(this.onFormSubmit, 500)} />
                         </div>
                     }
                     

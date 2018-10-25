@@ -15,6 +15,7 @@ class App extends Component {
       results: [],
       code: ''
     },
+    level: 'easy',
     loading: false,
     error: false
   }
@@ -41,6 +42,11 @@ class App extends Component {
       })})
     .catch( error => this.showError(error))
   }
+
+  onChangeLevel = e => {
+    this.setState({ level: e.target.name })
+  }
+
   showError = (error) => {
     console.log(error);
     this.setState({
@@ -78,7 +84,9 @@ class App extends Component {
         <Loader loading={this.state.loading}/>
 
         <Route exact path='/' render={() => (
-          <ListQuestions questions={this.state.questions}/>
+          <ListQuestions
+          onChangeLevel={this.onChangeLevel}
+          questions={this.state.questions.filter(q => q.level === this.state.level)}/>
         )}/>
             
         {this.state.questions.length > 0 && 

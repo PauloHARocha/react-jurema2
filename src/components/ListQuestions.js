@@ -2,20 +2,21 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 
 class ListQuestions extends Component {
+    
     render() {
-        const { questions } = this.props
+        const { questions, onChangeLevel } = this.props
         return (
             <div>
                 <div className="form-group col-lg-offset-4 col-lg-4">
                     <div className="btn-group btn-group-justified" role="group" aria-label="...">
                         <div className="btn-group" role="group">
-                            <button type="button" className="section-button-easy btn btn-default">Fácil</button>
+                            <button onClick={onChangeLevel} name="easy" className="section-button-easy btn btn-default">Fácil</button>
                         </div>
                         <div className="btn-group" role="group">
-                            <button type="button" className="section-button-medium btn btn-default">Médio</button>
+                            <button onClick={onChangeLevel} name="medium" className="section-button-medium btn btn-default">Médio</button>
                         </div>
                         <div className="btn-group" role="group">
-                            <button type="button" className="section-button-hard btn btn-default">Difícil</button>
+                            <button onClick={onChangeLevel} name="hard" className="section-button-hard btn btn-default">Difícil</button>
                         </div>
                     </div> 
                 </div>
@@ -24,7 +25,10 @@ class ListQuestions extends Component {
                         <Link key={question.id} to={`/question/${question.id}`} 
                         className="list-group-item">
                             <h4 className="list-group-item-heading">
-                            {`Questão ${question.id} - ${question.name}`}</h4>
+                                <span className={`question-title-${question.level}`}>
+                                    {`Questão ${question.id} - ${question.name}`}
+                                </span>
+                            </h4>
 
                             <p className="question-description list-group-item-text">{question.description}</p>
                             {/* <h5>Exemplos:</h5>

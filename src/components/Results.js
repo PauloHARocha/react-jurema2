@@ -14,11 +14,11 @@ class Results extends Component {
                                 <span className={`glyphicon glyphicon-${res.correct ? 'ok' : 'remove'}`}></span>
                             </h4>
                             
-                            <p className="list-group-item-text">
-                                Entrada: {res.input} 
-                                <br /> Saida: {res.answer} <br />
-                                {res.right_answer && (`Saída Esperada: ${res.right_answer}`  )}
-                            </p>
+                            <ul className="list-group-item-text">
+                                <li>Entrada: {res.input}</li> 
+                                <li>Saida: {res.answer}</li>
+                                {res.right_answer && (<li>Saída Esperada: {res.right_answer}</li>)}
+                            </ul>
                         </li>
                     ))}
                 </ul>
