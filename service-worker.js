@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "%20//pauloharocha.github.io/react-jurema2/precache-manifest.d66262b95d5d090faf7c04b6f7851e16.js"
+  "/react-jurema2/precache-manifest.26cdb47d288a6ca6c87c0df419acba15.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("%20//pauloharocha.github.io/react-jurema2/index.html", {
+workbox.routing.registerNavigationRoute("/react-jurema2/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
