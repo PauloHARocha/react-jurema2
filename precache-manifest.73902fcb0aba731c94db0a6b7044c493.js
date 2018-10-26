@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/react-jurema2/static/css/main.2324d007.chunk.css"
   },
   {
-    "revision": "eb8237e5ebf49fa496b576a090f1ab86",
+    "revision": "7d96a807970b67d05a61f9cdc47af665",
     "url": "/react-jurema2/index.html"
   }
 ];
