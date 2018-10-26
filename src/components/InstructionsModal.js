@@ -18,6 +18,10 @@ class InstructionsModal extends Component {
                             <li>Selecione o nível das questões</li>
                             <li>Selecione a questão que deseja executar</li>
                             <li>Faça o upload do seu script em python</li>
+                            <ul>
+                                <li>Leia toda a entrada com apenas um 'input()'</li>
+                                <li>Escreva toda a saída com apenas um 'print()'</li>
+                            </ul>
                             <li>Execute o script</li>
                             <li>Verique os casos de teste</li>
                         </ul>

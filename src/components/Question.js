@@ -63,7 +63,7 @@ class Question extends Component {
                     </div>
                     {this.state.selectedFile && 
                         <div className="form-group">
-                            <input className="btn btn-default" type='button' value='Executar' onClick={this.debounce(this.onFormSubmit, 500)} />
+                            <input className="btn btn-default" type='button' value='Executar' onClick={this.debounce(this.onFormSubmit, 300)} />
                         </div>
                     }
                     

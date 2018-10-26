@@ -19,7 +19,8 @@ class App extends Component {
     level: 'easy',
     loading: false,
     error: false,
-    showModal: false
+    showModal: false,
+    errorMessage: ''
   }
 
   showModal = () => {
@@ -44,14 +45,19 @@ class App extends Component {
     
     JuremaAPI.sendFile(data)
     .then(response => {
-      this.setState({
-        execution: {
-         question_id: question_id,
-         results: response.results,
-         code: response.code
-        },
-        loading: false
-      })})
+      if(response.error)
+        this.showError(response)
+      else{
+        this.setState({
+          execution: {
+            question_id: question_id,
+            results: response.results,
+            code: response.code
+          },
+          loading: false
+        })
+      }
+      })
     .catch( error => this.showError(error))
   }
 
@@ -60,10 +66,11 @@ class App extends Component {
   }
 
   showError = (error) => {
-    console.log(error);
+    console.log(error.message);
     this.setState({
       loading: false,
-      error: true
+      error: true,
+      errorMessage: error.message,
     })
   }
 
@@ -87,13 +94,14 @@ class App extends Component {
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul className="nav navbar-nav">
                 <li><a onClick={this.showModal}>Instruções</a></li>
+                <li><a href="https://github.com/PauloHARocha" target="_blank"><i class="fab fa-github"></i></a></li>
               </ul>
             </div>
             
           </div>
         </nav>
         
-        <Error error={this.state.error}/>
+        <Error error={this.state.error} message={this.state.errorMessage}/>
         <Loader loading={this.state.loading}/>
         <InstructionsModal showModal={this.state.showModal} hideModal={this.hideModal}/>
 

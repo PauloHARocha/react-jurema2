@@ -12,11 +12,15 @@ body {
 .navbar .navbar-brand {
     font-family: 'Lobster', cursive;
     color: white;
-    font-size: 22px;
+    font-size: 24px;
 }
 
 .navbar a {
     cursor: pointer;
+}
+
+.navbar .navbar-nav li{
+    font-size: 16px;
 }
 
 .section-button-easy {
@@ -125,6 +129,8 @@ pre {
     text-align: center;
     color: white;
     margin-top: -20px;
+    font-size: 16px;
+    padding: 5px;
 }
 
 .loader-container {
@@ -190,7 +196,7 @@ pre {
 .close {
     color: black;
     float: right;
-    font-size: 28px;
+    font-size: 50px;
     font-weight: bold;
 }
 
