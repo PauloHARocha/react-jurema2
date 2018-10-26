@@ -1,5 +1,4 @@
-// const api = 'https://jurema2.herokuapp.com'
-const api = 'http://127.0.0.1:5001'
+const api = 'https://jurema2.herokuapp.com'
 
 export const getQuestions = () =>
     fetch(`${api}/questions`).then(res => res.json())
